@@ -1,15 +1,10 @@
 #include <stdio.h>
 
 int main() {
-	int a = 1;
-	int b = 1;
-	int c = 1;
-	bool t = (a == b == c) && (a != 1) ;
-	if(t) {
-		printf("TRUE\n");
-	}
-	else {
-		printf("FALSE\n");
-	}
+	int a;
+	do {
+		printf("Enter val:\n");
+		scanf("%d", &a);
+	} while(a<3);
 	return 0;
 }

@@ -1,8 +1,6 @@
 /*
 TODO:
-1. It's a tie msg
-2. Putting constrains on input
-4. Checking if the location is already occupied
+	- Print a msg if the game ends in a tie.
 */
 #include <stdio.h>
 
@@ -36,20 +34,24 @@ int changePlayer() {
 
 // to get all the required values
 void getValues() {
-	//printf("\nEnter player- X/O: ");
-	//scanf(" %c", &player);
 	player = changePlayer();
-	printf("[%d's turn]\n", player);
-	printf("Enter row: ");
-	scanf("%d", &row);
-	printf("Enter column: ");
-	scanf("%d", &col);
+	again:	printf("[%d's turn]\n", player);
+	do {
+		printf("Enter row(1-3): ");
+		scanf("%d", &row);
+		printf("Enter column(1-3): ");
+		scanf("%d", &col);
+		if(arr[row-1][col-1] == 1 || arr[row-1][col-1] == 2) {
+			printf("Already occupied!Please enter a new value!\n\n");
+			goto again;
+		}
+	} while(row<1||row>3||col<1||col>3);
 	printf("_____________________________\n\n");
 
-	arr[row][col] = player;
+	arr[row-1][col-1] = player;
 }
 
-// print the array
+// print the grid
 void print() {
 	printf("\n");
 	for(int i = 0 ; i < 3 ; i++){
@@ -75,7 +77,7 @@ bool check() {
 	d1 = (arr[0][0] == arr[1][1]) && (arr[0][0] == arr[2][2]) && (arr[0][0] != def);
 	d2 = (arr[0][2] == arr[1][1]) && (arr[0][2] == arr[2][0]) && (arr[0][2] != def);
 
-	if(r1 || r2 || r3 || c1 || c2 || c3 || d1 || d2) { 
+	if(r1||r2||r3||c1||c2||c3||d1||d2) { 
 		printf("\n\t**** Player %d won! ****", player);
 		return true;
 	}
@@ -85,15 +87,16 @@ bool check() {
 }
 
 int main() {
-
+	
 	setDefaultVal();
 	print();	
 
 	while(turn < 9 && check() == false) {
-			check();
-			getValues();
-			turn++;
-			print();
-	}	
+		check();
+		getValues();
+		turn++;
+		print();
+	}
+
 	return 0;
 }
