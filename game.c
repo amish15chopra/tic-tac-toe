@@ -5,9 +5,9 @@ TODO:
 #include <stdio.h>
 
 int arr[3][3];
-int def = 0;
+char def = '.';
 int row, col;
-int player;
+char player;
 int turn = 0;
 bool r1, r2, r3;
 bool c1, c2, c3;
@@ -23,25 +23,25 @@ void setDefaultVal() {
 }
 
 // alternating between X and O
-int changePlayer() {
+char changePlayer() {
 	if(turn%2 == 0) {
-		return 1;
+		return 'X';
 	}
 	else {
-		return 2;
+		return 'O';
 	}
 }
 
 // to get all the required values
 void getValues() {
 	player = changePlayer();
-	again:	printf("[%d's turn]\n", player);
+	again:	printf("[%c's turn]\n", player);
 	do {
 		printf("Enter row(1-3): ");
 		scanf("%d", &row);
 		printf("Enter column(1-3): ");
 		scanf("%d", &col);
-		if(arr[row-1][col-1] == 1 || arr[row-1][col-1] == 2) {
+		if(arr[row-1][col-1] == 'X' || arr[row-1][col-1] == 'O') {
 			printf("Already occupied!Please enter a new value!\n\n");
 			goto again;
 		}
@@ -57,7 +57,7 @@ void print() {
 	for(int i = 0 ; i < 3 ; i++){
 		printf("\t");
 		for(int j = 0 ; j < 3 ; j++){
-			printf("  %d", arr[i][j]);
+			printf("  %c", arr[i][j]);
 		}
 		printf("\n\n");
 	}
@@ -78,7 +78,7 @@ bool check() {
 	d2 = (arr[0][2] == arr[1][1]) && (arr[0][2] == arr[2][0]) && (arr[0][2] != def);
 
 	if(r1||r2||r3||c1||c2||c3||d1||d2) { 
-		printf("\n\t**** Player %d won! ****", player);
+		printf("\n\t**** Player %c won! ****", player);
 		return true;
 	}
 	else {
@@ -97,6 +97,5 @@ int main() {
 		turn++;
 		print();
 	}
-
 	return 0;
 }
