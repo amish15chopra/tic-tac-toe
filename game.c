@@ -1,8 +1,8 @@
 /*
-TODO:
 	- Print a msg if the game ends in a tie.
 */
 #include <stdio.h>
+#include <stdbool.h>
 
 int arr[3][3];
 char def = '.';
@@ -77,7 +77,7 @@ bool check() {
 	d1 = (arr[0][0] == arr[1][1]) && (arr[0][0] == arr[2][2]) && (arr[0][0] != def);
 	d2 = (arr[0][2] == arr[1][1]) && (arr[0][2] == arr[2][0]) && (arr[0][2] != def);
 
-	if(r1||r2||r3||c1||c2||c3||d1||d2) { 
+	if(r1||r2||r3||c1||c2||c3||d1||d2) {
 		printf("\n\t**** Player %c won! ****", player);
 		return true;
 	}
@@ -87,9 +87,9 @@ bool check() {
 }
 
 int main() {
-	
+
 	setDefaultVal();
-	print();	
+	print();
 
 	while(turn < 9 && check() == false) {
 		check();
