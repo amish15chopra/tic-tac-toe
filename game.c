@@ -78,7 +78,7 @@ bool check() {
 	d2 = (arr[0][2] == arr[1][1]) && (arr[0][2] == arr[2][0]) && (arr[0][2] != def);
 
 	if(r1||r2||r3||c1||c2||c3||d1||d2) {
-		printf("\n\t**** Player %c won! ****", player);
+		printf("\n\t**** Player %c won! ****\n", player);
 		return true;
 	}
 	else {
