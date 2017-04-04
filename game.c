@@ -1,7 +1,5 @@
-/*
-	- Print a msg if the game ends in a tie.
-*/
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 int arr[3][3];
@@ -53,6 +51,7 @@ void getValues() {
 
 // print the grid
 void print() {
+	system("clear"); // clearing the console (only works on unix)
 	printf("\n");
 	for(int i = 0 ; i < 3 ; i++){
 		printf("\t");
@@ -97,5 +96,10 @@ int main() {
 		turn++;
 		print();
 	}
+
+	// Printing the tie msg
+	// if(check() == false) {
+	// 	printf("\tGame ended in a tie.\n");
+	// }
 	return 0;
 }
